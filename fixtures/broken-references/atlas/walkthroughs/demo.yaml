@@ -1,0 +1,13 @@
+atlasWalkthroughVersion: 1
+id: demo
+title: Broken references
+scenes:
+  - id: missing-heading
+    title: Missing heading
+    ref: markdown:section/docs/guide.md#missing
+  - id: wrong-kind
+    title: Wrong kind
+    ref: markdown:asset/docs/guide.md
+  - id: missing-document
+    title: Missing document
+    ref: markdown:document/docs/guid.md

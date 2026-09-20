@@ -1,0 +1,16 @@
+specification {
+  element system
+  element component
+}
+
+model {
+  governance = system 'Governance platform' {
+    gateway = component 'Policy gateway' 'Permits governed requests'
+  }
+}
+
+views {
+  view flow_permitted_path_walkthrough of governance {
+    include *
+  }
+}

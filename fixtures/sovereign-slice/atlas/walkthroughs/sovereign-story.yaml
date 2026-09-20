@@ -1,0 +1,28 @@
+id: sovereign-story
+title: Sovereign Agentic Architecture
+description: How a governed model request moves through the platform.
+scenes:
+  - id: small-models
+    eyebrow: Where the idea began
+    title: We started with small models
+    narrative: We were fine-tuning small language models for specific domains.
+    display:
+      motif: origin
+  - id: one-governed-door
+    ref: likec4:view/flow_permitted_path_walkthrough
+    eyebrow: The architectural answer
+    title: Keep intent local. Govern every journey outward.
+    narrative: Begin with one memorable rule.
+  - id: nhs-workspace
+    ref: markdown:asset/docs/static/img/demo/nhs-clinical-workspace.png
+    eyebrow: The product
+    title: A governed clinical workspace
+  - id: live-application
+    eyebrow: Make the story concrete
+    title: Watch the governed path live
+    narrative: Return to the synthetic NHS workspace.
+    notes: Open the NHS Care demo guide, then switch to the desktop application.
+    see:
+      - markdown:document/docs/demos/nhs-care.md
+    display:
+      motif: handoff

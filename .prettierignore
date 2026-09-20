@@ -1,0 +1,11 @@
+# One formatter per file type. Markdown belongs to markdownlint-cli2; Prettier and it
+# disagree about table padding, and padded tables make a one-word edit re-pad every row.
+*.md
+
+# Generated or vendored.
+dist/
+node_modules/
+fixtures/
+schemas/
+bun.lock
+CHANGELOG.md

@@ -1,0 +1,29 @@
+{
+  "name": "@apprise/atlas-workspace",
+  "private": true,
+  "type": "module",
+  "description": "Workspace root for Apprise Atlas. Publishable packages live in packages/.",
+  "license": "MIT",
+  "packageManager": "bun@1.3.14",
+  "engines": {
+    "node": ">=22.22.3",
+    "bun": ">=1.3.14 <2"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@changesets/cli": "3.0.3",
+    "@eslint/js": "10.0.1",
+    "@types/node": "26.6.2",
+    "dependency-cruiser": "18.4.0",
+    "eslint": "10.11.0",
+    "globals": "17.12.0",
+    "jiti": "2.7.0",
+    "markdownlint-cli2": "0.23.3",
+    "prettier": "3.9.8",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.70.0",
+    "vitest": "5.0.1"
+  }
+}

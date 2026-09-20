@@ -1,0 +1,4 @@
+[install]
+# Every dependency is pinned exactly; see AGENTS.md. This makes that mechanical
+# rather than a habit, so `bun add` cannot introduce a caret range.
+exact = true

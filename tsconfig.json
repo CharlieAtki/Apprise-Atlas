@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "types": ["node"]
+  },
+  // The config files typecheck themselves. A config that lies about its own shape
+  // is a config nobody notices is broken.
+  "include": ["eslint.config.ts", "prettier.config.ts", "vitest.config.ts"],
+  "references": [
+    { "path": "./packages/core" },
+    { "path": "./packages/toolkit" },
+    { "path": "./packages/provider-markdown" },
+    { "path": "./packages/provider-likec4" },
+    { "path": "./packages/cli" }
+  ]
+}

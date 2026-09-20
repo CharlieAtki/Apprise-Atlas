@@ -1,0 +1,40 @@
+{
+  "name": "@apprise/atlas-provider-markdown",
+  "version": "0.0.0",
+  "description": "Atlas provider for Markdown, front matter, ADRs and local assets.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "@apprise/atlas-core": "0.0.0"
+  },
+  "devDependencies": {
+    "@apprise/atlas-core": "workspace:*",
+    "@apprise/atlas-toolkit": "workspace:*"
+  },
+  "dependencies": {
+    "github-slugger": "2.0.0",
+    "remark": "15.0.1",
+    "remark-frontmatter": "5.0.0",
+    "unified": "11.0.5",
+    "yaml": "2.9.1"
+  }
+}

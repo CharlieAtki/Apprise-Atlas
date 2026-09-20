@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "atlasConfigVersion": {
+      "default": 1,
+      "type": "number",
+      "const": 1
+    },
+    "sources": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "options": {
+            "default": {},
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "provider",
+          "path"
+        ]
+      }
+    },
+    "walkthroughs": {
+      "default": "atlas/walkthroughs",
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "sources"
+  ]
+}

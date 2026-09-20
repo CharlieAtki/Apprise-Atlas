@@ -1,0 +1,7 @@
+atlasConfigVersion: 1
+sources:
+  - provider: likec4
+    path: architecture
+  - provider: markdown
+    path: docs
+walkthroughs: atlas/walkthroughs

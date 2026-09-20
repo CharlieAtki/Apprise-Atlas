@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  XC_VERSION: 0.9.0
+
+jobs:
+  gate:
+    name: xc ci
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: 1.3.14
+
+      # The smoke task runs the built ESM under Node rather than Bun, so Node must be
+      # the version consumers are promised, not whatever the runner happens to ship.
+      - name: Set up Node
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 22
+
+      - name: Install xc
+        run: |
+          curl -fsSL -o /usr/local/bin/xc \
+            "https://github.com/joerdav/xc/releases/download/v${XC_VERSION}/xc_${XC_VERSION}_linux_amd64"
+          chmod +x /usr/local/bin/xc
+          xc --version
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      # The whole gate. A developer runs this exact command locally.
+      - name: Gate
+        run: xc ci
+
+      # Generated JSON Schema is committed; if regenerating it changed anything, the
+      # published format reference has drifted from the schemas that define it.
+      # `git status --porcelain` rather than `git diff`, so a newly generated file
+      # nobody committed fails too.
+      - name: Assert no generated drift
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Generated output differs from what is committed:"
+            git status --short
+            git diff
+            exit 1
+          fi

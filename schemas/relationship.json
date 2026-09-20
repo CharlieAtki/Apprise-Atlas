@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "from": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "externalId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fragment": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "provider",
+        "kind",
+        "externalId"
+      ],
+      "additionalProperties": false
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "to": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "externalId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fragment": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "provider",
+        "kind",
+        "externalId"
+      ],
+      "additionalProperties": false
+    },
+    "origin": {
+      "type": "string",
+      "enum": [
+        "source",
+        "explicit",
+        "inferred",
+        "runtime"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "sourcePath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceUrl": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contentHash": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceLine": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991
+        },
+        "retrievedAt": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "validFrom": {
+      "type": "string",
+      "minLength": 1
+    },
+    "validUntil": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "from",
+    "type",
+    "to",
+    "origin",
+    "provenance"
+  ],
+  "additionalProperties": false
+}

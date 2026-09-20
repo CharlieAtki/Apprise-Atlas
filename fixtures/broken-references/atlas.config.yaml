@@ -1,0 +1,5 @@
+atlasConfigVersion: 1
+sources:
+  - provider: markdown
+    path: docs
+walkthroughs: atlas/walkthroughs

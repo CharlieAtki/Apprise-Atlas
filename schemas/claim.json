@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "subject": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "externalId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fragment": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "provider",
+        "kind",
+        "externalId"
+      ],
+      "additionalProperties": false
+    },
+    "maturity": {
+      "type": "string",
+      "enum": [
+        "implemented",
+        "prototype",
+        "planned",
+        "scaffold",
+        "external"
+      ]
+    },
+    "verification": {
+      "type": "string",
+      "enum": [
+        "live",
+        "automated",
+        "source",
+        "design"
+      ]
+    },
+    "evidence": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "test"
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "pinned": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "kind",
+              "path"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "source"
+              },
+              "ref": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]*$"
+                  },
+                  "kind": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]*$"
+                  },
+                  "externalId": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "fragment": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "provider",
+                  "kind",
+                  "externalId"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "kind",
+              "ref"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "run"
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1
+              },
+              "at": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "kind",
+              "url",
+              "at"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "design"
+              },
+              "ref": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]*$"
+                  },
+                  "kind": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]*$"
+                  },
+                  "externalId": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "fragment": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "provider",
+                  "kind",
+                  "externalId"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "kind",
+              "ref"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "subject",
+    "maturity",
+    "verification",
+    "evidence"
+  ],
+  "additionalProperties": false
+}
